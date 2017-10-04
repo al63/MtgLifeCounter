@@ -14,10 +14,11 @@ import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
+
     private var mPresenter: LifeCounterPresenter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
         mPresenter = LifeCounterPresenter.create(LifeCounterViewDelegate.create(this, findViewById(R.id.root)))
     }
@@ -35,11 +36,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         menu?.findItem(R.id.action_refresh)?.icon?.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
+        menu?.findItem(R.id.action_roll)?.icon?.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return mPresenter?.onOptionsItemSelected(item) ?: false
     }
-
 }

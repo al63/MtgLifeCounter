@@ -1,6 +1,7 @@
 package lucky.never.mtglife
 
 import android.view.MenuItem
+import java.util.*
 
 /**
  * Created by aleclee on 9/29/17.
@@ -31,6 +32,22 @@ class LifeCounterPresenter(private val mViewDelegate: LifeCounterViewDelegate) {
             mOpponentLifeTotal = 20
             mViewDelegate.setLifeTotals(mSelfLifeTotal, mOpponentLifeTotal)
             return true
+        } else if (item?.itemId == R.id.action_roll) {
+            // roll 0-1 to decide winner
+            if (Random().nextInt(2) == 0) {
+                // I win, 2-6
+                val selfRoll = Random().nextInt(5) + 2
+                // opponent rolls 1-{selfRoll-1}
+                val opponentRoll = Random().nextInt(selfRoll - 1) + 1
+                mViewDelegate.rollDice(selfRoll, opponentRoll)
+            } else {
+                // opponent win, 2-6
+                val opponentRoll = Random().nextInt(5) + 2
+                // self rolls 1-{opponentROll-1}
+                val selfRoll = Random().nextInt(opponentRoll - 1) + 1
+                mViewDelegate.rollDice(selfRoll, opponentRoll)
+            }
+            return true
         }
         return false
     }
@@ -42,8 +59,10 @@ class LifeCounterPresenter(private val mViewDelegate: LifeCounterViewDelegate) {
         }
 
         override fun onOpponentLifeTotalDown() {
-            mOpponentLifeTotal--
-            mViewDelegate.setLifeTotals(mSelfLifeTotal, mOpponentLifeTotal)
+            if (mOpponentLifeTotal > 0) {
+                mOpponentLifeTotal--
+                mViewDelegate.setLifeTotals(mSelfLifeTotal, mOpponentLifeTotal)
+            }
         }
 
         override fun onSelfLifeTotalUp() {
@@ -52,8 +71,10 @@ class LifeCounterPresenter(private val mViewDelegate: LifeCounterViewDelegate) {
         }
 
         override fun onSelfLifeTotalDown() {
-            mSelfLifeTotal--
-            mViewDelegate.setLifeTotals(mSelfLifeTotal, mOpponentLifeTotal)
+            if (mSelfLifeTotal > 0) {
+                mSelfLifeTotal--
+                mViewDelegate.setLifeTotals(mSelfLifeTotal, mOpponentLifeTotal)
+            }
         }
     }
 }

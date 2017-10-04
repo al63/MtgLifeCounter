@@ -6,4 +6,10 @@
         android:id="@+id/action_refresh"
         android:icon="@drawable/ic_refresh_black_24dp"
         android:title="Refresh"/>
+
+    <item
+        app:showAsAction="always"
+        android:id="@+id/action_roll"
+        android:icon="@drawable/ic_dice_numbers_three_and_four"
+        android:title="Dice Roll"/>
 </menu>

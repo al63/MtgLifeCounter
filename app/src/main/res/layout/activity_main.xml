@@ -1,79 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:id="@+id/root"
+    android:keepScreenOn="true"
     tools:context="lucky.never.mtglife.MainActivity">
 
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/background"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_height="0dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-        <ImageView
-            android:src="@drawable/ic_arrow_downward_black_24dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:id="@+id/opponent_down"
-            android:layout_gravity="center_vertical"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
-
-        <TextView
-            android:id="@+id/opponent_total"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
             android:gravity="center"
-            android:padding="10dp"
-            android:textSize="30sp"
-            android:rotation="180"
-            android:text="20" />
+            android:layout_height="0dp">
 
-        <ImageView
-            android:id="@+id/opponent_up"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/ic_arrow_upward_black_24dp"
-            android:layout_gravity="center_vertical"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+            <FrameLayout
+                android:id="@+id/opponent_up"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:tint="@color/primary_text"
+                    android:src="@drawable/ic_plus"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/opponent_total"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/primary_text"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textSize="70sp"
+                android:rotation="180"
+                android:layout_margin="10dp"
+                android:text="20" />
+
+            <FrameLayout
+                android:id="@+id/opponent_down"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/ic_minus"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="@color/primary_text"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+            </FrameLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_height="0dp">
+
+            <FrameLayout
+                android:id="@+id/self_down"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/ic_minus"
+                    android:tint="@color/primary_text"
+                    android:layout_gravity="center_vertical|right"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/self_total"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColor="@color/primary_text"
+                android:textSize="70sp"
+                android:text="20" />
+
+            <FrameLayout
+                android:id="@+id/self_up"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/ic_plus"
+                    android:tint="@color/primary_text"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+            </FrameLayout>
+        </LinearLayout>
+
     </LinearLayout>
-
 
     <LinearLayout
+        android:id="@+id/dice_roll_wrapper"
+        android:background="@color/background"
+        android:visibility="invisible"
         android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:orientation="horizontal"
+        android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_height="0dp">
-
-        <ImageView
-            android:src="@drawable/ic_arrow_downward_black_24dp"
-            android:id="@+id/self_down"
-            android:layout_gravity="center_vertical"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+        android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/self_total"
+            android:id="@+id/opponent_roll"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/primary_text"
             android:gravity="center"
             android:padding="10dp"
-            android:textSize="30dp"
-            android:text="20" />
+            android:textSize="40sp"
+            android:rotation="180" />
 
-        <ImageView
-            android:id="@+id/self_up"
-            android:src="@drawable/ic_arrow_upward_black_24dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:layout_gravity="center_vertical"
-            android:layout_width="50dp"
-            android:layout_height="50dp"/>
+        <TextView
+            android:id="@+id/self_roll"
+            android:layout_width="wrap_content"
+            android:textColor="@color/primary_text"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="40sp" />
+
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>

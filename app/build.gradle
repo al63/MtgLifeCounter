@@ -1,3 +1,5 @@
+import groovy.swing.SwingBuilder
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
@@ -26,6 +28,7 @@ repositories {
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.3"
+
     defaultConfig {
         applicationId "lucky.never.mtglife"
         minSdkVersion 16
@@ -34,10 +37,21 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        release {
+            storeFile file("android.jks")
+            storePassword ""
+            keyAlias "key0"
+            keyPassword ""
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
@@ -48,7 +62,39 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
+    compile "com.android.support:design:25.3.1"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+
+task askForPasswords << {
+    // Must create String because input returns char[]
+    def storePw = ""
+    def keyPw = ""
+
+    new SwingBuilder().edt {
+        dialog(modal: true, title: 'Enter password', alwaysOnTop: true, resizable: false, locationRelativeTo: null, pack: true, show: true) {
+            vbox { // Put everything below each other
+                label(text: "Please enter store passphrase:")
+                def input1 = passwordField()
+                label(text: "Please enter key passphrase:")
+                def input2 = passwordField()
+                button(defaultButton: true, text: 'OK', actionPerformed: {
+                    storePw = input1.password
+                    keyPw = input2.password
+                    dispose()
+                })
+            }
+        }
+    }
+
+    android.signingConfigs.release.storePassword = new String(storePw)
+    android.signingConfigs.release.keyPassword = new String(keyPw)
+}
+
+tasks.whenTaskAdded { theTask ->
+    if (theTask.name == "packageRelease") {
+        theTask.dependsOn "askForPasswords"
+    }
 }
