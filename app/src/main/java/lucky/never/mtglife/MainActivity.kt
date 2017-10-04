@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mPresenter = LifeCounterPresenter.create(LifeCounterViewDelegate.create(this, findViewById(R.id.root)))
+        mPresenter = LifeCounterPresenter.create(LifeCounterViewDelegate.create(findViewById(R.id.root)))
     }
 
     override fun onResume() {
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onPause() {
-        super.onResume()
+        super.onPause()
         mPresenter?.onInactive()
     }
 

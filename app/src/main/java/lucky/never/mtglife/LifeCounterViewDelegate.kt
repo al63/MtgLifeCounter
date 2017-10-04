@@ -9,12 +9,11 @@ import android.widget.TextView
  * Created by aleclee on 9/29/17.
  */
 
-class LifeCounterViewDelegate(val context: Context,
-                              val mRoot: View) {
+class LifeCounterViewDelegate(private val mRoot: View) {
 
     companion object {
-        fun create(context: Context, root: View): LifeCounterViewDelegate {
-            return LifeCounterViewDelegate(context, root)
+        fun create(root: View): LifeCounterViewDelegate {
+            return LifeCounterViewDelegate(root)
         }
     }
 
@@ -54,7 +53,7 @@ class LifeCounterViewDelegate(val context: Context,
         mSelfText.text = selfLifeTotal.toString()
     }
 
-    fun rollDice(selfDiceRoll: Int, opponentDiceRoll: Int) {
+    fun showDiceRollResults(selfDiceRoll: Int, opponentDiceRoll: Int) {
         if (mAnimatingRoll) {
             return
         }
@@ -63,12 +62,14 @@ class LifeCounterViewDelegate(val context: Context,
         TransitionUtil.beginTransition(mDiceRollWrapper)
         mDiceRollWrapper.visibility = View.VISIBLE
 
-        var selfText = "Rolled $selfDiceRoll"
-        var opponentText = "Rolled $opponentDiceRoll"
+        var selfText: String? = null
+        var opponentText: String? = null
         if (selfDiceRoll > opponentDiceRoll) {
-            selfText += "\nYou start"
+            selfText = "Rolled $selfDiceRoll\nYou start"
+            opponentText = "Rolled $opponentDiceRoll"
         } else if (opponentDiceRoll > selfDiceRoll) {
-            opponentText += "\nYou start"
+            selfText = "Rolled $selfDiceRoll"
+            opponentText = "Rolled $opponentDiceRoll\nYou start"
         }
         mSelfDiceRoll.text = selfText
         mOpponentDiceRoll.text = opponentText

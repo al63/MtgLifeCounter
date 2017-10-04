@@ -31,7 +31,6 @@ class LifeCounterPresenter(private val mViewDelegate: LifeCounterViewDelegate) {
             mSelfLifeTotal = 20
             mOpponentLifeTotal = 20
             mViewDelegate.setLifeTotals(mSelfLifeTotal, mOpponentLifeTotal)
-            return true
         } else if (item?.itemId == R.id.action_roll) {
             // roll 0-1 to decide winner
             if (Random().nextInt(2) == 0) {
@@ -39,17 +38,16 @@ class LifeCounterPresenter(private val mViewDelegate: LifeCounterViewDelegate) {
                 val selfRoll = Random().nextInt(5) + 2
                 // opponent rolls 1-{selfRoll-1}
                 val opponentRoll = Random().nextInt(selfRoll - 1) + 1
-                mViewDelegate.rollDice(selfRoll, opponentRoll)
+                mViewDelegate.showDiceRollResults(selfRoll, opponentRoll)
             } else {
                 // opponent win, 2-6
                 val opponentRoll = Random().nextInt(5) + 2
-                // self rolls 1-{opponentROll-1}
+                // self rolls 1-{opponentRoll-1}
                 val selfRoll = Random().nextInt(opponentRoll - 1) + 1
-                mViewDelegate.rollDice(selfRoll, opponentRoll)
+                mViewDelegate.showDiceRollResults(selfRoll, opponentRoll)
             }
-            return true
         }
-        return false
+        return true
     }
 
     private val mListener = object: LifeCounterViewDelegate.Listener {

@@ -9,8 +9,6 @@
     tools:context="lucky.never.mtglife.MainActivity">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:background="@color/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -43,10 +41,9 @@
                 android:layout_height="match_parent"
                 android:textColor="@color/primary_text"
                 android:gravity="center"
-                android:padding="10dp"
-                android:textSize="70sp"
+                android:textSize="60sp"
                 android:rotation="180"
-                android:layout_margin="10dp"
+                android:minEms="2"
                 android:text="20" />
 
             <FrameLayout
@@ -90,11 +87,10 @@
                 android:id="@+id/self_total"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
                 android:gravity="center"
-                android:padding="10dp"
                 android:textColor="@color/primary_text"
-                android:textSize="70sp"
+                android:textSize="60sp"
+                android:minEms="2"
                 android:text="20" />
 
             <FrameLayout
