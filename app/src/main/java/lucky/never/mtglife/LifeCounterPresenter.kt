@@ -7,16 +7,18 @@ import java.util.*
  * Created by aleclee on 9/29/17.
  */
 
-class LifeCounterPresenter(private val mViewDelegate: LifeCounterViewDelegate) {
+class LifeCounterPresenter(private val mViewDelegate: LifeCounterViewDelegate,
+                           private val mStartingLifeTotal: Int) {
 
     companion object {
+        private val STARTING_LIFE_TOTAL = 20
         fun create(viewDelegate: LifeCounterViewDelegate): LifeCounterPresenter {
-            return LifeCounterPresenter(viewDelegate)
+            return LifeCounterPresenter(viewDelegate, STARTING_LIFE_TOTAL)
         }
     }
 
-    private var mSelfLifeTotal: Int = 20
-    private var mOpponentLifeTotal: Int = 20
+    private var mSelfLifeTotal: Int = mStartingLifeTotal
+    private var mOpponentLifeTotal: Int = mStartingLifeTotal
 
     fun onActive() {
         mViewDelegate.setListener(mListener)
@@ -28,8 +30,8 @@ class LifeCounterPresenter(private val mViewDelegate: LifeCounterViewDelegate) {
 
     fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.action_refresh) {
-            mSelfLifeTotal = 20
-            mOpponentLifeTotal = 20
+            mSelfLifeTotal = mStartingLifeTotal
+            mOpponentLifeTotal = mStartingLifeTotal
             mViewDelegate.setLifeTotals(mSelfLifeTotal, mOpponentLifeTotal)
         } else if (item?.itemId == R.id.action_roll) {
             // roll 0-1 to decide winner

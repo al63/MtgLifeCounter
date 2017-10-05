@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -20,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mPresenter = LifeCounterPresenter.create(LifeCounterViewDelegate.create(findViewById(R.id.root)))
+        mPresenter = LifeCounterPresenter.create(LifeCounterViewDelegate.createAndAttach(this, findViewById(R.id.root) as ViewGroup))
     }
 
     override fun onResume() {

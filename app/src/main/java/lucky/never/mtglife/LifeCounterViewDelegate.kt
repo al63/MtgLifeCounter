@@ -1,6 +1,8 @@
 package lucky.never.mtglife
 
 import android.content.Context
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -12,7 +14,9 @@ import android.widget.TextView
 class LifeCounterViewDelegate(private val mRoot: View) {
 
     companion object {
-        fun create(root: View): LifeCounterViewDelegate {
+        private val TAG = this::class.java.canonicalName
+        fun createAndAttach(context: Context, root: ViewGroup): LifeCounterViewDelegate {
+            LayoutInflater.from(context).inflate(R.layout.life_counter_view_delegate, root, true)
             return LifeCounterViewDelegate(root)
         }
     }
@@ -55,6 +59,11 @@ class LifeCounterViewDelegate(private val mRoot: View) {
 
     fun showDiceRollResults(selfDiceRoll: Int, opponentDiceRoll: Int) {
         if (mAnimatingRoll) {
+            return
+        }
+
+        if (selfDiceRoll == opponentDiceRoll) {
+            Log.e(TAG, "Attempting to show dice roll results when both rolls are the same. Must have a winner.")
             return
         }
 

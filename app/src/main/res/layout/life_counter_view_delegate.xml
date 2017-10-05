@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/root"
+    android:keepScreenOn="true"
+    tools:context="lucky.never.mtglife.MainActivity">
+
+    <LinearLayout
+        android:background="@color/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_height="0dp">
+
+            <FrameLayout
+                android:id="@+id/opponent_up"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:tint="@color/primary_text"
+                    android:src="@drawable/ic_plus"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/opponent_total"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/primary_text"
+                android:gravity="center"
+                android:textSize="60sp"
+                android:rotation="180"
+                android:minEms="2"
+                android:text="20" />
+
+            <FrameLayout
+                android:id="@+id/opponent_down"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/ic_minus"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="@color/primary_text"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+            </FrameLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_height="0dp">
+
+            <FrameLayout
+                android:id="@+id/self_down"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/ic_minus"
+                    android:tint="@color/primary_text"
+                    android:layout_gravity="center_vertical|right"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/self_total"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/primary_text"
+                android:textSize="60sp"
+                android:minEms="2"
+                android:text="20" />
+
+            <FrameLayout
+                android:id="@+id/self_up"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:src="@drawable/ic_plus"
+                    android:tint="@color/primary_text"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"/>
+            </FrameLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/dice_roll_wrapper"
+        android:background="@color/background"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/opponent_roll"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textColor="@color/primary_text"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="40sp"
+            android:rotation="180" />
+
+        <TextView
+            android:id="@+id/self_roll"
+            android:layout_width="wrap_content"
+            android:textColor="@color/primary_text"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textSize="40sp" />
+
+    </LinearLayout>
+
+</FrameLayout>
