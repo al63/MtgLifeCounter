@@ -19,17 +19,18 @@
             android:layout_weight="1"
             android:orientation="horizontal"
             android:gravity="center"
+            android:rotation="180"
             android:layout_height="0dp">
 
             <FrameLayout
-                android:id="@+id/opponent_up"
+                android:id="@+id/opponent_down"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:tint="@color/primary_text"
-                    android:src="@drawable/ic_plus"
+                    android:src="@drawable/ic_minus"
                     android:background="?attr/selectableItemBackgroundBorderless"
+                    android:tint="@color/primary_text"
                     android:layout_gravity="center_vertical|right"
                     android:layout_width="50dp"
                     android:layout_height="50dp"/>
@@ -42,19 +43,18 @@
                 android:textColor="@color/primary_text"
                 android:gravity="center"
                 android:textSize="60sp"
-                android:rotation="180"
                 android:minEms="2"
                 android:text="20" />
 
             <FrameLayout
-                android:id="@+id/opponent_down"
+                android:id="@+id/opponent_up"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:src="@drawable/ic_minus"
-                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:tint="@color/primary_text"
+                    android:src="@drawable/ic_plus"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:layout_gravity="center_vertical"
                     android:layout_width="50dp"
                     android:layout_height="50dp"/>
