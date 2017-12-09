@@ -59,10 +59,8 @@ class LifeCounterPresenter(private val mViewDelegate: LifeCounterViewDelegate,
         }
 
         override fun onOpponentLifeTotalDown() {
-            if (mOpponentLifeTotal > 0) {
-                mOpponentLifeTotal--
-                mViewDelegate.setLifeTotals(mSelfLifeTotal, mOpponentLifeTotal)
-            }
+            mOpponentLifeTotal--
+            mViewDelegate.setLifeTotals(mSelfLifeTotal, mOpponentLifeTotal)
         }
 
         override fun onSelfLifeTotalUp() {
@@ -71,10 +69,8 @@ class LifeCounterPresenter(private val mViewDelegate: LifeCounterViewDelegate,
         }
 
         override fun onSelfLifeTotalDown() {
-            if (mSelfLifeTotal > 0) {
-                mSelfLifeTotal--
-                mViewDelegate.setLifeTotals(mSelfLifeTotal, mOpponentLifeTotal)
-            }
+            mSelfLifeTotal--
+            mViewDelegate.setLifeTotals(mSelfLifeTotal, mOpponentLifeTotal)
         }
     }
 }

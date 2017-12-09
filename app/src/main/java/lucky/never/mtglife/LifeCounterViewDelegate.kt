@@ -16,8 +16,8 @@ class LifeCounterViewDelegate(private val mRoot: View) {
     companion object {
         private val TAG = this::class.java.canonicalName
         fun createAndAttach(context: Context, root: ViewGroup): LifeCounterViewDelegate {
-            LayoutInflater.from(context).inflate(R.layout.life_counter_view_delegate, root, true)
-            return LifeCounterViewDelegate(root)
+            val view = LayoutInflater.from(context).inflate(R.layout.life_counter_view_delegate, root, true)
+            return LifeCounterViewDelegate(view)
         }
     }
 
@@ -74,11 +74,11 @@ class LifeCounterViewDelegate(private val mRoot: View) {
         var selfText: String? = null
         var opponentText: String? = null
         if (selfDiceRoll > opponentDiceRoll) {
-            selfText = "Rolled $selfDiceRoll\nYou start"
+            selfText = "Rolled $selfDiceRoll\nYou choose"
             opponentText = "Rolled $opponentDiceRoll"
         } else if (opponentDiceRoll > selfDiceRoll) {
             selfText = "Rolled $selfDiceRoll"
-            opponentText = "Rolled $opponentDiceRoll\nYou start"
+            opponentText = "Rolled $opponentDiceRoll\nYou choose"
         }
         mSelfDiceRoll.text = selfText
         mOpponentDiceRoll.text = opponentText
